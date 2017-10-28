@@ -10,10 +10,12 @@ router.get('/' , async (ctx, next) => {
   console.log("Todos los datos");
   // console.log(`Nombre tarea: ${tarea1.getNombre()}`);
   ctx.state = {
-    title : 'KOA ES DIFICIL'
+    title : 'MODELER'
   };
 
   await ctx.render('home', {
+    "titulo_app": "Modeler",
+    "bajada_app": "Herramienta para modelar Mongo... just JSON",
     "dato" : tarea1.Nombre
   })
 
