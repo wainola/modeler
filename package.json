@@ -2,14 +2,17 @@
   "name": "modeler_koa",
   "version": "0.0.1",
   "description": "data modelling tool for mongo",
-  "main": "init.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon init.js"
+    "start": "nodemon index.js"
   },
   "author": "Nicolás Riquelme",
   "license": "MIT",
   "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
     "bluebird": "^3.5.0",
     "bootstrap": "^4.0.0-alpha.6",
     "ejs": "^2.5.7",

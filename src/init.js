@@ -1,23 +1,21 @@
 /*
 Inclusion de modulos
 */
-
-const koa = require('koa');
-const mongoose = require('mongoose');
-const convert = require('koa-convert');
-const bodyParser = require('koa-bodyparser');
-const error = require('koa-json-error');
-const logger = require('koa-logger');
-const koaRes = require('koa-res');
-const handleError = require('koa-handle-error');
-// // Servir assets estaticos.
-// const serve = require('koa-static-server');
-const rutas_api = require('./api/rutas/main');
-const views = require('koa-views');
+import koa from 'koa';
+import mongoose from 'mongoose';
+import convert from 'koa-convert';
+import bodyParser from 'koa-bodyparser';
+import error from 'koa-json-error';
+import logger from 'koa-logger';
+import handleError from 'koa-handle-error';
+import rutas_api from './api/rutas/main';
+import views from 'koa-views';
+import bluebird from 'bluebird';
 
 // TODO => añadir el controlador de la vista.
 
-const app = new koa();
+export const app = new koa();
+const puerto = 4000;
 
 // NOTE: testeando setup inicial
 // app.use(ctx => {
@@ -28,7 +26,7 @@ const app = new koa();
 //   console.log("Listening on port 3000");
 // });
 
-mongoose.Promise = require('bluebird');
+mongoose.Promise = bluebird;
 mongoose
 .connect('mongodb://localhost/')
 .then((response) => {
@@ -56,6 +54,7 @@ app.use(async (ctx, next) => {
   }
 })
 
+// NOTE: definicion de recursos estaticos
 app.use(convert(require('koa-static')(__dirname + '/public')));
 
 // NOTE: seteando el motor de plantilla previo su instalación y añadido en el package.json
@@ -77,5 +76,5 @@ app.use(rutas_api.routes()).use(rutas_api.allowedMethods())
 //   })
 // }))
 app.listen(4000, () =>{
-  console.log("Servidor escuchando en puerto 4000")
+  console.log(`Servidor escuchando en puerto ${puerto}`)
 })
