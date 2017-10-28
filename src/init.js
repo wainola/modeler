@@ -59,7 +59,10 @@ app.use(convert(require('koa-static')(__dirname + '/public')));
 
 // NOTE: seteando el motor de plantilla previo su instalación y añadido en el package.json
 app.use(views(__dirname + '/views', {
-  extension: 'ejs'
+  map: {
+    hbs: "handlebars"
+  },
+  extension: "hbs"
 }))
 
 // NOTE: logging
